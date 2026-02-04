@@ -1,13 +1,21 @@
+# Master -> Main change
 Change default branch setting: git config --global init.defaultBranch main
 Rename branch: git branch -m name
 
-All about git:
+# All about git
 Create branch_name: git branch branch_name
-Change to branch_name: git checkout branch_name
+Reassign branch_name to a commit_id (not allowed on current branch): git branch -f branch_name {commit_id | rel_ref}
+Change to branch_name or commit_id: git checkout {branch_name | commit_id | rel_ref}
 Create and change to branch_name: git checkout -b branch_name
 Merge current branch with branch_name: git merge branch_name
+Rebasing copies and pastes a commit to clean up the commit tree: git rebase {branch_name | commit_id | rel_ref}
+Relative refs (rel_ref): move upwards one commit: ^, vs move upwards n commits: ~n
+    Use this to replace branch_name or commit_id with a commit relative to current
+Use reset or revert to undo a commit
+    for local branches: git reset {branch_name | commit_id | rel_ref}; vs for remote branches: git revert
+Copy a series of commits to below the current location: git cherry-pick
 
-Github process:
+# Github process
 1. create repo in Github
 2. git remote add origin git_url
 3. git push -u origin main
