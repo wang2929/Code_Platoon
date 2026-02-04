@@ -1,0 +1,33 @@
+# build image first, then run container
+
+# to build the image
+docker build -t image_name
+
+# to build containers (--rm for remove after, but don't have to do that)
+docker run --rm container_name image_name
+
+# workflow for container management:
+#   1. Stop container
+#   2. Delete container
+#   3. Delete image
+# remember containers depend on images
+
+# to view containers (-a for all containers)
+docker ps -a
+# to remove containers (-f to force stop if container is running)
+docker rm -f container_name
+
+# to see images
+docker images
+# to remove images
+docker rmi image_name
+
+# See run.sh for script on building containers
+# remember to change permissions chmod +x run.sh
+
+# WSL and VSCode with Docker HAS ISSUES and I'm exhausted. Nothing is working.
+docker build --tag image_name /location/
+# add image attribute to devcontainer "image": "image_name"
+# activate devcontainer CLI tho I forget how, somehow through uh VSCode
+devcontainer up --workspace-folder <path-to-working-directory>  # start a dev container
+# use the run.sh template
