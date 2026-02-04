@@ -1,0 +1,2 @@
+Change default branch setting: git config --global init.defaultBranch main
+Rename branch: git branch -m name
