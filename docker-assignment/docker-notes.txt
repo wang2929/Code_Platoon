@@ -31,3 +31,6 @@ docker build --tag image_name /location/
 # activate devcontainer CLI tho I forget how, somehow through uh VSCode
 devcontainer up --workspace-folder <path-to-working-directory>  # start a dev container
 # use the run.sh template
+
+# Open bash terminal:
+# docker exec -it <container name or id> bash
