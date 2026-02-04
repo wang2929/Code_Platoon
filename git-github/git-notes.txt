@@ -3,17 +3,44 @@ Change default branch setting: git config --global init.defaultBranch main
 Rename branch: git branch -m name
 
 # All about git
-Create branch_name: git branch branch_name
-Reassign branch_name to a commit_id (not allowed on current branch): git branch -f branch_name {commit_id | rel_ref}
-Change to branch_name or commit_id: git checkout {branch_name | commit_id | rel_ref}
+{ref} - anything git can resolve into a commit. Possible refs: branch_name, commit_id, rel_ref, tag_name
+Create branch_name: git branch branch_name {ref!optional}
+Reassign branch_name to a commit_id (not allowed on current branch): git branch -f branch_name {ref}
+Change to branch_name or commit_id: git checkout {ref}
 Create and change to branch_name: git checkout -b branch_name
 Merge current branch with branch_name: git merge branch_name
-Rebasing copies and pastes a commit to clean up the commit tree: git rebase {branch_name | commit_id | rel_ref}
+Rebasing copies and pastes a commit to clean up the commit tree: git rebase {ref}
+    Rebase copies and pastes from {ref} to the current commit
+    -i interactive flag to allow to drop and re-order commits along a branch
 Relative refs (rel_ref): move upwards one commit: ^, vs move upwards n commits: ~n
     Use this to replace branch_name or commit_id with a commit relative to current
+    Can specify ^num if there's multiple parents (first parent is oldest parent, smallest hash)
+    Can string together ^ and ~ e.g. main~2^3~2 goes back 2, 3rd parent, then back 2 again
 Use reset or revert to undo a commit
-    for local branches: git reset {branch_name | commit_id | rel_ref}; vs for remote branches: git revert
-Copy a series of commits to below the current location: git cherry-pick
+    for local branches: git reset {ref}; vs for remote branches: git revert {ref}
+Copy a series of commits to below the current location: git cherry-pick [list of {ref}s]
+Tags for marking commits; anchor certain parts of the work process: git tag tag_name {ref}
+    You cannot add commits off of tagged commits
+How far {ref} currently is from closest anchor: git describe {ref}
+    Format: tag - numCommits - g<hash> (hash of {ref})
+
+# All about git and cloud (Github)
+Use clone to make a local copy of a remote repository: git clone <remote_git_repo>
+Remote branches are for the state of the remote repo
+    Remote branches are on the local repository, not remote repository
+    Default main remote name is origin
+Fetch (git fetch) does two things: downloads commits in remote but not local and updates remote branch's commit location
+    Does NOT change any local files; only downloads info
+    Basically creates a branch with the remote changes
+Pull (git pull) does two things: fetches and merges
+Push (git push) uploads your local changes to remote repository
+    git.default defines default behavior
+    Otherwise git push remote_ref local_ref -> upload commits on local ref to remote ref
+        local_ref can be a range of commits source:destination
+Diverging work: local repo doesn't have commits in the remote repo
+    Can fetch, rebase origin, and then push
+    Can fetch, merge origin, and then push
+    Can use git pull --rebase for fetch and merge/rebase
 
 # Github process
 1. create repo in Github
