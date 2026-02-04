@@ -2,9 +2,10 @@ Change default branch setting: git config --global init.defaultBranch main
 Rename branch: git branch -m name
 
 All about git:
-Create branches: git branch branch_name
-Change branches: git checkout branch_name
-Create and change to branch: git checkout -b branch_name
+Create branch_name: git branch branch_name
+Change to branch_name: git checkout branch_name
+Create and change to branch_name: git checkout -b branch_name
+Merge current branch with branch_name: git merge branch_name
 
 Github process:
 1. create repo in Github
