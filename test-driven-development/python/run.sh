@@ -13,6 +13,8 @@ set_folder_and_file () {
                 FILE="test_roman_numerals.py";;
         s) FOLDER="algo-linear-search-py"
             FILE="test_linear_search.py";;
+        c) FOLDER="intro_to_pytest"
+            FILE="test_calculator.py" ;;
         *) echo "Not a valid file/folder alias."
             exit -1 ;;
     esac

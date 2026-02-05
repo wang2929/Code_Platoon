@@ -1,0 +1,16 @@
+{
+  "name": "factorial-tutorial",
+  "version": "1.0.0",
+  "description": "Coding challenge to calculate factorial",
+  "main": "index.js",
+  "scripts": {
+    "start": "node factorial.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
