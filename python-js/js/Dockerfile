@@ -1,4 +1,6 @@
 FROM node:18-alpine
+ARG FOLDER
+ARG FILE
 ENV FOLDER=${FOLDER:-algo-fibonacci-py}
 ENV FILE=${FILE:-fibonacci_spec.py}
 
