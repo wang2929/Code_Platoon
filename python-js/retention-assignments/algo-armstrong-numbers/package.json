@@ -1,0 +1,22 @@
+{
+  "name": "algo-armstrong-numbers",
+  "version": "1.0.0",
+  "description": "An Armstrong Number is an N-digit number that is equal to the sum of the Nth powers of its digits.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeplatoon-fullstack/algo-armstrong-numbers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeplatoon-fullstack/algo-armstrong-numbers/issues"
+  },
+  "homepage": "https://github.com/codeplatoon-fullstack/algo-armstrong-numbers#readme",
+  "dependencies": {
+    "shallow-equal": "^1.2.1"
+  }
+}

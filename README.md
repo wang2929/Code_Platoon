@@ -8,4 +8,10 @@ This folder focuses on setting up simple Dockerfile types and using a shell scri
 This folder is largely useless here, but was used as scratch to practice simple git and Github commands.
 
 ## python-js
-This folder contains some beginner Python and Javascript exercises. There is also a Dockerfile for a Python and Javascript environment respectively as well as a run.sh script to automatically run each exercise in a container.
+This folder contains some entry-level Python and Javascript exercises. There is also a Dockerfile for a Python and Javascript environment respectively as well as a run.sh script to automatically run each exercise in a container.
+
+## test-driven-development
+The lesson introduced students to pytest and jest. The folder contains some simple problems in python and javascript with debugging using pytest and jest.
+
+## intro-to-oop
+This folder contains classes and methods as an example for how object-oriented programming works. All in Python because I'm used to Python. Not here to debate whether Javascript is object-oriented or not.
