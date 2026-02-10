@@ -23,27 +23,27 @@ class BudgetItem():
         return self._description
     @name.setter
     def name(self, value):
-        if isinstance(value, str) and value.isalpha():
+        if type(value) is str and value.isalpha():
             self._name = value
         else:
             self._name = "n/a"
     @type.setter
     def type(self, value):
-        if isinstance(value, str) and value.upper() in self.TYPE_LIST:
+        if type(value) is str and value.upper() in self.TYPE_LIST:
             self._type = value.title()
         elif not hasattr(self, 'type'):
             raise ValueError("Invalid type")
     @amount.setter
     def amount(self, value):
-        if isinstance(value, str) and value.isdigit():
+        if type(value) is str and value.isdigit():
             self._amount = float(value)
-        elif isinstance(value, float) or isinstance(value, int):
+        elif type(value) is float or type(value) is int:
             self._amount = float(value)
         elif not hasattr(self, 'amount'):
             raise ValueError("Invalid amount")
     @description.setter
     def description(self, value):
-        if isinstance(value, str):
+        if type(value) is str:
             self._description = value
         elif not hasattr(self, 'description'):
             self._description = ""

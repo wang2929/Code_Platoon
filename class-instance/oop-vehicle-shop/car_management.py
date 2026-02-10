@@ -1,3 +1,5 @@
+# Practicing with class attributes
+
 class CarManager:
     all_car = {}
     total_cars = 0
