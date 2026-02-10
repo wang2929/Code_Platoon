@@ -46,3 +46,11 @@ def test_grade_advance():
 def test_study():
     student = Student("Tiffany")
     assert student.study("math") == "Tiffany is studying Math"
+
+def test_invalid_name_init_1():
+    student = Student(5678)
+    assert student.name == "Anonymous"
+
+def test_invalid_name_init_2():
+    student = Student("Ab")
+    assert student.name == "Anonymous"

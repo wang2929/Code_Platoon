@@ -11,8 +11,10 @@ class Student:
     
     @name.setter
     def name(self, value):
-        if isinstance(value, str) and len(value) > 3 and value.isalpha():
+        if isinstance(value, str) and value.isalpha() and len(value) > 3:
             self._name = value.title()
+        elif not hasattr(self, 'name'):
+            self._name = "Anonymous"
     
     @property
     def age(self):
@@ -20,8 +22,10 @@ class Student:
     
     @age.setter
     def age(self, value):
-        if isinstance(value, int) and value >= 11 and value <= 18:
+        if isinstance(value, int) and 11 <= value <= 18:
             self._age = value
+        elif not hasattr(self, 'age'):
+            self._age = 13
     
     @property
     def grade(self):
@@ -33,8 +37,10 @@ class Student:
             grade_int = int(value[:-2])
             if grade_int >= 9 and grade_int <= 12:
                 self._grade = value
-        elif isinstance(value, str) and value.isdigit() and value >= 9 and value <= 12:
+        elif isinstance(value, str) and value.isdigit() and 9 <= value <= 12:
             self._grade = value + "th"
+        elif not hasattr(self, 'grade'):
+            self._grade = "12th"
     
     def __str__(self):
         return f"Student name: {self._name}, Age: {self._age}, Grade: {self._grade}"
@@ -47,20 +53,3 @@ class Student:
     def study(self, value):
         if isinstance(value, str):
             return f"{self._name} is studying {value.title()}"
-
-'''
-def create_student_from_terminal():
-    inputs = {
-        "name": input("Enter student name: "),
-        "age": input("Enter student age or leave blank: "),
-        "grade": input("Enter student grade (9th - 12th) or leave blank: ")
-    }
-    student = Student(**inputs)
-    return student
-
-registry = []
-while True:
-    print("\nPlease make a student")
-    new_student = create_student_from_terminal()
-    registry.append(new_student)
-'''

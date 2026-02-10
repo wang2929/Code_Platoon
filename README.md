@@ -15,3 +15,6 @@ The lesson introduced students to pytest and jest. The folder contains some simp
 
 ## intro-to-oop
 This folder contains classes and methods as an example for how object-oriented programming works. All in Python because I'm used to Python. Not here to debate whether Javascript is object-oriented or not.
+
+## class-instance
+This folder contains more features of classes including class attributes and class methods.
