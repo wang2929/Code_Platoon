@@ -1,14 +1,28 @@
-def make_array():
-    return [0, 1, 2, 3]
+class Mother:
+    def __init__(self):
+        self.first_name = "Sandra"
+        self.last_name = "Wilensky"
 
-def do_thing(x, y):
-    msg = "I'm taking up space"
-    return x + y
 
-def product(arr_input):
-    ret = 0
-    for number in arr_input:
-        ret = do_thing(ret, number)
-    return ret
+class Father:
+    def __init__(self):
+        self.first_name = "Harris"
+        self.last_name = "Cohen"
 
-print(product(make_array()))
+
+class Child(Mother, Father):
+    def __init__(self):
+        # try swapping the order of these initializing statements
+        # Mother first - mother's last name
+        # Father first - father's last name
+        Father.__init__(self)
+        Mother.__init__(self)
+        
+        self.first_name = "Benjamin"
+
+    def print_full_name(self):
+        print(f"{self.first_name} {self.last_name}")
+
+
+ben = Child()
+ben.print_full_name()
