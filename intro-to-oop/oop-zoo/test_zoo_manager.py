@@ -41,3 +41,8 @@ def test_aviary():
 def test_reptile_enclosure():
     reptile_enclosure = ReptileEnclosure()
     assert isinstance(reptile_enclosure.reptiles, list)
+
+def test_add_bird():
+    aviary = Aviary()
+    new_bird = { 'name':'Amsterdam Albatross', 'species':'Diomedea amsterdamensis', 'wingspan':'3' }
+    aviary.add_bird(**new_bird)

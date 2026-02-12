@@ -31,6 +31,16 @@ class Aviary():
     def __init__(self):
         self.birds = []
         
+    def add_bird(self, **kwargs):
+        new_bird = Bird(**kwargs)
+        print(isinstance(new_bird, Bird))
+        print(type(new_bird) == Bird)
+        self.birds.append(new_bird)
+        
 class ReptileEnclosure():
     def __init__(self):
         self.reptiles = []
+        
+aviary = Aviary()
+new_bird = { 'wingspan':'3', 'name':'Amsterdam Albatross', 'species':'Diomedea amsterdamensis' }
+aviary.add_bird(**new_bird)
