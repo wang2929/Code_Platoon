@@ -5,25 +5,41 @@ class Game:
     def __init__(self, num_of_players=4):
         self.players: list[Player] = []
         for i in range(num_of_players):
-            self.players.append(Player(i+1))
+            new_player = Player(i+1)
+            self.players.append(new_player)
     
     def print_all_players(self):
         for i in range(len(self.players)):
-            print(f"Player {i+1}: {self.players[i]}, {self.players[i].score}")
+            print(f"Player {i+1}: {self.players[i].name}, {self.players[i].score}")
+    
+    def get_player(self, name):
+        for player in self.players:
+            if name in player:
+                return player
+        print(f"Didn't find {name}")
+        return -1
     
     def update_player_name(self, old_name, new_name):
-        if old_name in self.players:
-            if new_name not in self.players:
-                idx = self.players.index(old_name)
-                self.players[idx].name = new_name
+        old_name = str(old_name)[:4].title()
+        new_name = str(new_name)[:4].title()
+        if type(the_player := self.get_player(old_name)) == Player:
+            if type(self.get_player(new_name)) == int:
+                print(f"Updating name {old_name} to {new_name}")
+                the_player.name = new_name
             else:
                 print(f"Unable to update name - {new_name} is taken!")
         else:
             print(f"Unable to update name - cannot find {old_name}")
     
     def add_frame(self, player_name, *scores):          
-        idx = self.players.index(player_name)
-        self.players[idx].add_new_frame(scores)
+        the_player = self.get_player(player_name)
+        the_player.add_new_frame(scores)
+        
+    def __contains__(self, value):
+        for player in self.players:
+            if player.name == str(value):
+                return True
+        return False
         
     def __str__(self):
         ret_str = "--- Bowling ---\n"
