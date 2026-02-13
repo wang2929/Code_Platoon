@@ -21,15 +21,7 @@ class Game:
         else:
             print(f"Unable to update name - cannot find {old_name}")
     
-    def add_frame(self, player_name, *scores):
-        if len(scores) == 2:
-            scores.append(0)
-        if len(scores) != 3:
-            print(f"Unable to add frame - Given {len(scores)} rolls, expected 2 or 3")
-            return
-        if not Frame.raw_score_is_valid(*scores):
-            print(f"Unable to add frame - Invalid scores {scores}")
-            return            
+    def add_frame(self, player_name, *scores):          
         idx = self.players.index(player_name)
         self.players[idx].add_new_frame(scores)
         

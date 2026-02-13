@@ -1,79 +1,124 @@
 class Frame:
-    def __init__(self, *scores, tenth=False):
-        self.first, self.second, self.third = scores
+    def __init__(self, scores:list[int], tenth=False):
         self.tenth_frame = tenth
-        self.raw_score = self.first + self.second + self.third
-        # spare and strike are flags for adjusting score; applies when not the 10th frame)
-        self.spare = True if (self.first + self.second) == 10 else False
-        self.strike = True if self.first == 10 else False
-        self.adjusted_score = -1 if self.spare or self.strike else self.raw_score
+        self.scores = scores
+        self.adjustments = []
     
     @property
-    def first(self):
-        return self._first
-    @first.setter
-    def first(self, value):
-        if self.roll_is_valid(value):
-            self._first = value
-            
+    def scores(self):
+        return self._scores
+    @scores.setter
+    def scores(self, value):
+        if len(value) != 2 or len(value) != 3:
+            raise Exception(f"Need the correct number of scores. Received {len(value)} scores, expected 2 or 3.")
+        self.scores_are_valid(value)    # function raises error if invalid
+        # logic for bowling game
+        two_rolls_sum = int(value[0]) + int(value[1])
+        if self.tenth_frame:
+            if len(value) == 3:
+                if two_rolls_sum != 10:
+                    raise Exception(f"Too many scores received. Only spares or strikes on the first two rolls can roll a third time.")
+                self._scores = value
+        elif len(value) == 2:
+            if 0 <= two_rolls_sum <= 10:
+                raise Exception(f"Sum of scores is not valid. Score {value} adds up to {two_rolls_sum}")
+            self._scores = value
+        else:
+            raise Exception("Received 3 scores on a frame before the 10th frame")
+        
     @property
-    def second(self):
-        return self._second
-    @second.setter
-    def second(self, value):
-        if self.roll_is_valid(value):
-            self._second = value
-            
+    def spare(self):
+        if self.scores[0] < 10 and self.scores[0] + self.scores[1] == 10:
+            return True
+        return False
+    
     @property
-    def third(self):
-        return self._third
-    @third.setter
-    def third(self, value):
-        if self.roll_is_valid(value):
-            self._third = value
+    def strike(self):
+        if self.scores[0] == 10:
+            return True
+        return False
+    
+    @property
+    def raw_score(self):
+        return sum(self.scores)
+    
+    # -1 as placeholder to wait for valid score
+    @property
+    def adjusted_score(self):
+        if self.tenth_frame:    # tenth frame needs no adjustments
+            return self.raw_score
+        # all other frames should be adjusted for spares and strikes
+        if self.strike:
+            if len(self.adjustments) == 2:
+                return self.raw_score + self.sum(self.adjustments)
+            return -1
+        elif self.spare:
+            if len(self.adjustments) == 1:
+                return self.raw_score + self.adjustments[0]
+            return -1
+        else:
+            return self.raw_score
+    
+    def add_adjustments(self, *value):
+        for val in value:
+            Frame.roll_is_valid(val) # raises error if invalid
+            self.adjustments.append(val)
 
+    @staticmethod
+    def scores_are_valid(scores):
+        for roll in scores:
+            Frame.roll_is_valid(roll)
+    
     @staticmethod
     def roll_is_valid(roll):
         if type(roll) == str:
             try:
                 roll = int(roll)
             except:
-                print("Unable to parse score")
-        if type(roll) == int and 0 <= roll <= 10:
-            return True
+                raise ValueError("Unable to parse a numerical score.")
+        if type(roll) == int:
+            if roll < 0 or roll > 10:
+                raise ValueError(f"Score of {roll} is not valid.")
         else:
-            print("Unable to interpret score")
-        
-    @staticmethod
-    def raw_score_is_valid(*args):
-        if len(args) != 3:
-            return False
-        for score in args:
-            if score < 0 or score > 10:
-                return False
-        return True
+            raise ValueError("Unable to interpret score")
 
     def __str__(self):
+        sz = 3
+        padded_empty = ' '.center(sz)
+        padded_strike = 'X'.center(sz)
+        padded_spare = '/'.center(sz)
+        padded_first = self.scores[0].center(sz)
+        padded_second = self.scores[1].center(sz)
+        padded_total_2 = self.adjusted_score.center(sz*3) if self.adjusted_score >= 0 else '-'.center(sz*3)
+        padded_total_3 = self.adjusted_score.center(sz*4)
+        # 10th frame only has 3 if there was a strike or spare first
+        # print X on strikes and / on spares for tenth frame
         if self.tenth_frame:
-            # 10th frame only has 3 if there was a strike or spare first
-            # print X on strikes and / on spares for tenth frame
-            if self.first == 10:    # can have three strikes, strike and spare, strike and open
-                if self.second == 10 and self.third == 10:
-                    print("| X | X | X")
-                elif self.second + self.third == 10:
-                    print(f"| X | {self.second} | / |")
+            if self.scores[0] == 10:    # can have three strikes, strike and spare, strike and open
+                padded_third = self.scores[2].center(3)
+                # three strikes
+                if self.scores[1] == 10 and self.scores[2] == 10:
+                    return f"|{padded_strike}|{padded_strike}|{padded_strike}|\n{padded_total_3}"
+                # strike then spare
+                elif self.scores[1] + self.scores[2] == 10:
+                    return f"|{padded_strike}|{padded_second}|{padded_spare}|\n{padded_total_3}"
+                # strike then open
                 else:
-                    print(f"| X | {self.second} | {self.third} |")
-            elif self.first + self.second == 10:    # cannot have a strike on the second without strike on the first
-                if self.third == 10:
-                    print(f"| {self.first} | / | X |")
+                    return f"|{padded_strike}|{padded_second}|{padded_third}|\n{padded_total_3}"
+            elif self.scores[0] + self.scores[1] == 10:    # first two rolls make a spare, plus third roll
+                padded_third = self.scores[2].center(3)
+                # spare then strike
+                if self.scores[2] == 10:
+                    return f"|{padded_first}|{padded_spare}|{padded_strike}|\n{padded_total_3}"
+                # spare then open
                 else:
-                    print(f"| {self.first} | / | {self.third} |")
+                    return f"|{padded_first}|{padded_spare}|{padded_third}|\n{padded_total_3}"
             else:
-                print(f"| {self.first} | {self.second} |")
+                # open on the tenth is like a regular open
+                return f"|{padded_first}|{padded_second}|\n{padded_total_2}"
         elif self.spare:
-            print(f"| {self.first} | / |")
+            return f"|{padded_first}|{padded_spare}|\n{padded_total_2}"
         elif self.strike:
-            print("| X |   |")
+            return f"|{padded_strike}|{padded_empty}|\n{padded_total_2}"
         else:
-            print(f"| {self.first} | {self.second} |")
+            return f"|{padded_first}|{padded_second}|\n{padded_total_2}"
