@@ -75,14 +75,16 @@ class Player:
     
     # To print the player's game so far
     def __str__(self):
-        nm, sc, fr = 5, 4, 3
+        nm, sc, fr = 4, 3, 3
         padded_name = self.name.ljust(nm)
         padded_score = str(self.score).center(sc)
         padded_adjustment = '-'.center(sc)
         padded_empty = ' ' * fr
-        padded_waiting = ' ' * fr * 3
-        top_line = f"{padded_name}|"
-        bottom_line = ' ' * 5
+        padded_waiting = ' ' * (fr * 3 - 2)
+        top_line = f"{padded_name}"
+        bottom_line = ' ' * nm
+    
+        # for player scores
         for i in range(10):
             if i < len(self.frames):
                 top_line += str(self.frames[i])
@@ -91,9 +93,9 @@ class Player:
                 top_line += f"|{padded_empty}|{padded_empty}|"
                 bottom_line += f"|{padded_waiting}|"
         if self.waiting_adjustment:
-            top_line += f"|{padded_adjustment}|"
+            top_line += f"{padded_adjustment}|"
         else:
-            top_line += f"|{padded_score}|"
+            top_line += f"{padded_score}|"
         return top_line + "\n" + bottom_line
     
         

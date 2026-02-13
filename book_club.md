@@ -1,18 +1,13 @@
----Composition vs Inheritance---
+# Book Club - Nice parts
 
-Composition is an alternative that reverses these costs and benefits. In composi-
-tion, the relationship between objects is not codified in the class hierarchy; instead
+## Composition vs Inheritance
+
+Composition is an alternative that reverses these costs and benefits. In composition, the relationship between objects is not codified in the class hierarchy; instead
 objects stand alone and as a result must explicitly know about and delegate messages
 
-From the Library of Esmeralda Avila
 
-ptg40318898
-
-186 Chapter 8. Combining Objects with Composition
-to one another. Composition allows objects to have structural independence, but at
-the cost of explicit message delegation.
-Now that you’ve seen examples of inheritance and composition you can begin
-to think about when to use them. The general rule is that, faced with a problem that
+186 Chapter 8. Combining Objects with Composition to one another. 
+Composition allows objects to have structural independence, but at the cost of explicit message delegation. Now that you’ve seen examples of inheritance and composition you can begin to think about when to use them. The general rule is that, faced with a problem that
 composition can solve, you should be biased toward doing so. If you cannot explicitly
 defend inheritance as a better solution, use composition. Composition contains far
 fewer built-in dependencies than inheritance; it is very often the best choice.
@@ -21,7 +16,7 @@ This section examines the costs and benefits of inheritance versus composition a
 provides guidelines for choosing the best relationship.
 
 
----Inheritance Disadvantages---
+## Inheritance Disadvantages
 
 Concerns about the use of inheritance fall into two different areas. The first fear is
 that you might be fooled into choosing inheritance to solve the wrong kind of prob-

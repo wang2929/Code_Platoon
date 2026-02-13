@@ -1,7 +1,7 @@
 from classes.game import Game
 
 game = Game()
-print(game)
+game.print_to_file()
 game.print_all_players()
 
 

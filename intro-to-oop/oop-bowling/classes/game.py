@@ -35,6 +35,11 @@ class Game:
         the_player = self.get_player(player_name)
         the_player.add_new_frame(scores)
         
+    def print_to_file(self):
+        msg = self.__str__()
+        with open('output/game_state.txt', 'w') as f:
+            print(msg, file=f)
+        
     def __contains__(self, value):
         for player in self.players:
             if player.name == str(value):
@@ -42,7 +47,14 @@ class Game:
         return False
         
     def __str__(self):
-        ret_str = "--- Bowling ---\n"
+        ret_str = "~~~~~ Let's Go Bowling ~~~~~\n"
+        nm, fr = 4, 3
+        # for header
+        header = ' ' * nm
+        for i in range(10):
+            header += f"{str(i+1).center(fr*3)}"
+        ret_str += header + "\n"
+        # now print players
         for player in self.players:
             ret_str += str(player) + '\n'
         return ret_str
