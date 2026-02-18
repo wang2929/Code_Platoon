@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -8,9 +6,9 @@ function App() {
 
   // adding from vanilla js
   const answer = Math.floor(Math.random() * 100) + 1;
-  const gameForm = document.getElementById("game")
   const gameStart = (event) => {
     event.preventDefault()
+    let gameForm = document.getElementById("game")
     // Update text
     let newContent = document.createElement("h2");
     newContent.appendChild(document.createTextNode("Guess a number 1-100"))
@@ -30,14 +28,14 @@ function App() {
     let feedback = document.createElement("p");
     feedback.setAttribute("id", "feedback");
 
-    gameForm.replaceChildren(newContent, newInput, newBtn, feedback);
+    gameForm.replaceChildren(newContent, newInput, newBtn, feedback)
   }
 
   const playGame = (event) => {
     event.preventDefault();
 
-    let userGuess = document.querySelector("#guess-text").value;
-    let feedback = document.querySelector("#feedback");
+    let userGuess = document.getElementById("guess-text").value;
+    let feedback = document.getElementById("feedback");
     try {
         userGuess = parseInt(userGuess);
     } catch(error) {
@@ -45,22 +43,22 @@ function App() {
     }
 
     if (userGuess < answer) {
-        feedback.replaceChildren(document.createTextNode(`${userGuess} is too low`));
+        feedback.innerText = `${userGuess} is too low`;
     } else if (userGuess > answer) {
-        feedback.replaceChildren(document.createTextNode(`${userGuess} is too high`));
+        feedback.innerText = `${userGuess} is too high`;
     } else {
-        feedback.replaceChildren(document.createTextNode(`${userGuess} is correct! Nice!`));
-        // Option to restart
+        feedback.innerText = `${userGuess} is correct! Nice!`;
+
+        // Disable button
         let guessBtn = document.getElementById("enter-guess")
-        guessBtn.setAttribute("disabled", "True")
-        let resetBtn = document.createElement("button")
-        resetBtn.setAttribute("id", "reset")
-        resetBtn.appendChild(document.createTextNode("Restart Game"))
-        resetBtn.addEventListener("click", (event) => {
-            event.preventDefault()
-            gameStart()
-        })
-        gameForm.appendChild(resetBtn)
+        guessBtn.disabled = true
+
+        // Option to restart
+        // let resetBtn = document.createElement("button")
+        // resetBtn.type = "reset"
+        // resetBtn.addEventListener("click", gameStart(event))
+        // resetBtn.appendChild(document.createTextNode("Restart Game"))
+        // document.getElementById("game").appendChild(resetBtn)
     }
     console.log(answer);
   }

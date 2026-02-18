@@ -3,6 +3,23 @@
 ## Markdown
 - Using Markdown Preview Enhanced, view the formatted markdown using ctrl+k + v
 
+## Docker
+- Build an image: `docker build -t image-name .`
+- Build a container for React: ` docker run \
+  --rm \
+  -p 5173:5173 \
+  -v $(pwd):/app \
+  -v /app/node_modules \
+  --name react-container \
+  my-vite-image
+`
+  - rm flag to remove container after finishing
+  - p flag for linking ports, connecting current network to Docker network
+  - v flag for mounting, connecting current directory to Docker directory
+  - name for the container name
+  - my-vite-image is the name of the vite image
+
+
 ## HTML and CSS
 - Typical files include index.html (the structure), styles.css (the formatting and colors), and app.js (the javascript script to do stuff)
 - <b>Add stylesheet:</b> `<link rel="stylesheet" href="styles.css">`
