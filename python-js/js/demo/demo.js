@@ -1,9 +1,10 @@
-function testStuff(x) {
+function regExTest(x) {
     const pinRegEx = /^(?:[0-9]{4}|[0-9]{6})$/;
     return pinRegEx.test(x);
 }
 
-console.log(testStuff("1234")); // expect true
-console.log(testStuff("12345")); // expect false
-console.log(testStuff("123456")); // expect true
-console.log(testStuff("12341234")); // expect false
+function filterTest(x) {
+    return x.filter((elem) => elem > 5);
+}
+
+console.log(filterTest([1,, 3, 5, 7, 9, 11]));

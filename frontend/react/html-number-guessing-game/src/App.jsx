@@ -1,9 +1,16 @@
-// Your function(s) should go here that will interact with the webpage or DOM
-const startBtn = document.getElementById("start");
-const gameForm = document.getElementById("game")
-const answer = Math.floor(Math.random() * 100) + 1;
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-const gameStart = () => {
+function App() {
+  const [count, setCount] = useState(0)
+
+  // adding from vanilla js
+  const answer = Math.floor(Math.random() * 100) + 1;
+  const gameForm = document.getElementById("game")
+  const gameStart = (event) => {
+    event.preventDefault()
     // Update text
     let newContent = document.createElement("h2");
     newContent.appendChild(document.createTextNode("Guess a number 1-100"))
@@ -24,9 +31,9 @@ const gameStart = () => {
     feedback.setAttribute("id", "feedback");
 
     gameForm.replaceChildren(newContent, newInput, newBtn, feedback);
-}
+  }
 
-gameForm.addEventListener("submit", (event) => {
+  const playGame = (event) => {
     event.preventDefault();
 
     let userGuess = document.querySelector("#guess-text").value;
@@ -56,10 +63,17 @@ gameForm.addEventListener("submit", (event) => {
         gameForm.appendChild(resetBtn)
     }
     console.log(answer);
-        
-})
+  }
 
-startBtn.addEventListener("click", (event) => {
-    event.preventDefault()
-    gameStart()
-})
+
+  return (
+    <>
+      <h1>Number Guessing Game</h1>
+      <form id="game" onSubmit = {() => playGame(event)}>
+        <button type="submit" id="start" onClick = {() => gameStart(event)}>Start</button>
+      </form>
+    </>
+  )
+}
+
+export default App

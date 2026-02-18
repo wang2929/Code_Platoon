@@ -1,0 +1,32 @@
+/* Specificity: id -> class -> element */
+
+body {
+    background-color: lightblue;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    padding: 10px;
+}
+
+/* # is the "id" selector */
+ul#task-list-id {
+    list-style-type: none;
+    outline: black;
+    padding-left: 0px;
+}
+
+/* . is the "class" selector */
+div.task-list-class {
+    padding-left: 5px;
+}
+
+/* in the task list class, choose the labels next to the checked checkboxes */
+.task-list-class input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: purple;
+    background-color: green;
+}
