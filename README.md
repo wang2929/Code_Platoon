@@ -19,3 +19,6 @@ The tdd folders covers test-driven development, introducing pytest and jest for 
 This folder contains classes and methods as an example for how object-oriented programming works. All in Python because I'm used to Python. Not here to debate whether Javascript is object-oriented or not.
 
 Some of the class exercises include class attributes, class methods, inheritance, and polymorphism.
+
+## frontend
+This folder contains some Vanilla and React projects
