@@ -1,4 +1,7 @@
 import alphabet from "../utils/alphabet"
+import RunHangman from "./RunHangman"
+import WrongLettersList from "./WrongLettersList"
+import { useState } from 'react'
 
 export default function MakeGuess({puzzle, guessedLetters, setGuessedLetters}) {
 
@@ -16,10 +19,14 @@ export default function MakeGuess({puzzle, guessedLetters, setGuessedLetters}) {
     }
 
     return (
-        <form className="make-guess" onSubmit={onSubmit}>
-            <label htmlFor='guess-text'>Enter a letter</label>
-            <input type="text" id="guess-text" />
-            <button type="submit">Guess!</button>
-        </form>
+        <main>
+            <RunHangman key={key1} puzzle={puzzle} guessedLetters={guessedLetters}/>
+            <form className="make-guess" onSubmit={onSubmit}>
+                <label htmlFor='guess-text'>Enter a letter</label>
+                <input type="text" id="guess-text" />
+                <button type="submit">Guess!</button>
+            </form>
+            <WrongLettersList key={key2} puzzle={puzzle} guessedLetters={guessedLetters}/>
+        </main>
     )
 }

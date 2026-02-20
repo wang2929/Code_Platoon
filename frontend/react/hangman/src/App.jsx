@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import randomWord from './utils/randomword'
 import RunHangman from './components/RunHangman'

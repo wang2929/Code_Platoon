@@ -12,7 +12,10 @@ function vowels() {
 }
 
 const x = ['h','e','l','l',' ','o']
+<<<<<<< HEAD
 for (char of x) {
     console.log(char);
 }
+=======
+>>>>>>> c2cf82e0dd1bc7410d110277f8761721f512389f
 console.log([...x, 'a'])
