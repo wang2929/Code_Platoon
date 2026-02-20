@@ -11,5 +11,5 @@ function vowels() {
     return ['A','E','I','O','U','Y','a','e','i','o','u','y']
 }
 
-`space is here`.split('').map((char) => console.log(char));
-console.log(vowels().indexOf(' '))
+const x = ['h','e','l','l',' ','o']
+console.log(x.slice(-1)[0])
