@@ -1,26 +1,24 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import randomWord from './utils/randomword'
 import RunHangman from './components/RunHangman'
 import MakeGuess from './components/MakeGuess'
-import WrongLettersList from './components/WrongLettersList'
+import GuessedLettersList from './components/GuessedLettersList'
 
 function App() {
   const [puzzle, setPuzzle] = useState("")
-  const [hangmanKey, setHangmanKey] = useState(1)
-  const [lettersKey, setLettersKey] = useState(-1)
   useEffect(() => { setPuzzle(randomWord()) }, []);
-  const [guessedLetter, setGuessedLetter] = useState([])
-  
+  const [guessedLetters, setGuessedLetters] = useState([])
+  useEffect(() => { console.log(`${guessedLetters} from useEffect`) }, []);
+  console.log(puzzle)
   return (
     <>
-    <main>
-      <h1>Let's play Hangman</h1>
-      <RunHangman key={hangmanKey} puzzle={puzzle} guessedLetters={guessedLetter}/>
-      <MakeGuess addToKey={hangmanKey} setAddKey={setHangmanKey}
-            subFromKey={lettersKey} setSubKey={setLettersKey} guessedLetters={guessedLetter}/>
-      <WrongLettersList key={lettersKey} puzzle={puzzle} guessedLetters={guessedLetter}/>
-    </main>
+      <main>
+        <h1>Let's play Hangman</h1>
+        <RunHangman puzzle={puzzle} guessedLetters={guessedLetters}/>
+        <MakeGuess puzzle={puzzle} guessedLetters={guessedLetters} setGuessedLetters={setGuessedLetters}/>
+        <GuessedLettersList puzzle={puzzle} guessedLetters={guessedLetters}/>
+      </main>
     </>
   )
 }

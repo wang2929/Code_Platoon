@@ -28,6 +28,6 @@ const randomWord = () => {
         "northwestward"
         ]
     let idx = Math.floor(Math.random() * wordList.length) + 1
-    return wordList[idx]
+    return wordList[idx].toUpperCase()
 }
 export default randomWord;

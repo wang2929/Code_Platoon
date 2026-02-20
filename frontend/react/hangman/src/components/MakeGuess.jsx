@@ -1,17 +1,16 @@
 import alphabet from "../utils/alphabet"
 
-export default function MakeGuess({addToKey, setAddKey, subFromKey, setSubKey, guessedLetters}) {
+export default function MakeGuess({puzzle, guessedLetters, setGuessedLetters}) {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log("is it working")
         let letter = e.target[0].value.toUpperCase()
-        if (alphabet().indexOf(letter) >= 0 && guessedLetters.indexOf(letter) == -1) {
-            guessedLetters.push(letter)
-            console.log(guessedLetters)
-            setAddKey(addToKey + 1)
-            setSubKey(subFromKey - 1)
-            console.log(`${addToKey} ${subFromKey}`)
+        if (guessedLetters && alphabet().indexOf(letter) >= 0) {
+            if (guessedLetters.indexOf(letter) == -1) {
+                setGuessedLetters([...guessedLetters, letter])
+            } else {
+                alert("You guessed that letter already dummy")
+            }
         }
     }
 

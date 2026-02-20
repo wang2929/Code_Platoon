@@ -1,14 +1,17 @@
-export default function RunHangman({key, puzzle, guessedLetters}) {
+// Sets up the hangman progress
+export default function RunHangman({puzzle, guessedLetters}) {
     let word = [];
     for (let char of puzzle) {
-        if (guessedLetters.indexOf(char) < 0) {
-            word.push('_ ');
-        } else {
+        // array.indexOf(elem) = i if array[i] === element else -1
+        if (guessedLetters && guessedLetters.indexOf(char) > -1) {
             word.push(char);
+        } else {
+            word.push('_ ');
         }
     }
+    console.log(word)
     return (
-        <div key={key} className="hangman">
+        <div className="hangman">
             <h2>{word.join('')}</h2>
         </div>
     )
