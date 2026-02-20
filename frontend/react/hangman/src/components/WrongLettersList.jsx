@@ -1,11 +1,11 @@
-export default function WrongLettersList({key, puzzle, guessedLetters}) {
+export default function WrongLettersList({puzzle, guessedLetters}) {
     let word = [];
     for (let char of puzzle) {
-        if (guessedLetters.indexOf(char) > -1) {
+        if (guessedLetters && guessedLetters.indexOf(char) > -1) {
             word.push(char);
         } 
     }
     return (
-        <div key={key} className="wrong-letters"><p>{word.join('')}</p></div>
+        <div className="wrong-letters"><p>{word.join('')}</p></div>
     )
 }

@@ -12,4 +12,4 @@ function vowels() {
 }
 
 const x = ['h','e','l','l',' ','o']
-console.log(x.slice(-1)[0])
+console.log([...x, 'a'])
