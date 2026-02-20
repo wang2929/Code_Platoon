@@ -41,6 +41,25 @@
   color: #888;
 }
 
-.game {
+button {
   margin: 5px;
+}
+
+input {
+  margin: 5px;
+}
+
+.formatted-word {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+.formatted-word p.vowel {
+  color: red;
+}
+
+.formatted-word p.space {
+  margin: 2px;
 }

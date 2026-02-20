@@ -7,4 +7,9 @@ function filterTest(x) {
     return x.filter((elem) => elem > 5);
 }
 
-console.log(filterTest([1,, 3, 5, 7, 9, 11]));
+function vowels() {
+    return ['A','E','I','O','U','Y','a','e','i','o','u','y']
+}
+
+`space is here`.split('').map((char) => console.log(char));
+console.log(vowels().indexOf(' '))

@@ -1,7 +1,7 @@
 # template for building image, though for EVERY project
 # you have to rebuild image to re-install dependencies
 
-FROM node:18
+FROM node:latest
 WORKDIR /app
 COPY . .
 RUN npm install

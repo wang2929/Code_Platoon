@@ -1,5 +1,5 @@
 import './App.css'
-import getRandomPokemon from './getRandomPokemon'
+import getRandomPokemon from './utils/getRandomPokemon'
 
 function App() {
 
