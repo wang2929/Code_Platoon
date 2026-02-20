@@ -9,7 +9,6 @@ export default function RunHangman({puzzle, guessedLetters}) {
             word.push('_ ');
         }
     }
-    console.log(word)
     return (
         <div className="hangman">
             <h2>{word.join('')}</h2>

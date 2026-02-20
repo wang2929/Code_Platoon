@@ -12,6 +12,7 @@ export default function MakeGuess({puzzle, guessedLetters, setGuessedLetters}) {
                 alert("You guessed that letter already dummy")
             }
         }
+        e.target[0].value = ""
     }
 
     return (
