@@ -170,3 +170,14 @@ function exampleFilter(arr) {
 console.log(exampleFilter([1, 3, 5, 7, 9, 11]));
 // Prints [7, 9, 11]
 ```
+## PostgreSQL
+- Uninstall the wrong version of PostgreSQL (Ubuntu): `apt-get --purge remove postgresql-{number}`
+- To install PostgreSQL 14:
+    - `sudo apt update` to grab latest packages
+    - `sudo apt install wget -y` for wget (-y for yes)
+    - `wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -` to import the repository key
+    - `sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'` to find and install the PostgreSQL repository and packages
+    - `sudo apt update` to upgrade packages again
+    - `sudo apt install postgresql-14` to install PostgreSQL 14
+    - `sudo service postgresql@14 restart` to restart the service
+    - `sudo -u postgres psql` to access shell (you're done, yay!)
