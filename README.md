@@ -21,4 +21,4 @@ This folder contains classes and methods as an example for how object-oriented p
 Some of the class exercises include class attributes, class methods, inheritance, and polymorphism.
 
 ## frontend
-This folder contains some Vanilla and React projects
+This folder contains some Vanilla js and React projects
