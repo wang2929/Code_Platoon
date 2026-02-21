@@ -58,14 +58,7 @@ To copy a repo from Github: git clone git_url
 
 ## Docker
 - Build an image: `docker build -t image-name .`
-- Build a container for React: ` docker run \
-  --rm \
-  -p 5173:5173 \
-  -v $(pwd):/app \
-  -v /app/node_modules \
-  --name react-container \
-  my-vite-image
-`
+- Build a container for React: `docker run --rm -p 5173:5173 -v $(pwd):/app -v /app/node_modules --name <container-name> <image-name>`
   - rm flag to remove container after finishing
   - p flag for linking ports, connecting current network to Docker network
   - v flag for mounting, connecting current directory to Docker directory
@@ -86,11 +79,11 @@ To copy a repo from Github: git clone git_url
 - Can use a `run.sh` to build image and run container
   - remember to change permissions `chmod +x run.sh`
 - Open bash terminal: `docker exec -it <container name or id> bash`
-### Running DevContainers on Windows
-1. Build the image separately: `docker build --tag image_name /location/`
-2. add image attribute to devcontainer `"image": "image_name"`
-3. activate devcontainer CLI tho I forget how, somehow through uh VSCode: `devcontainer up --workspace-folder <path-to-working-directory>`
-4. use the run.sh template to run the container
+- Run as root: add -u user flag `docker exec -it -u root <container-name> bash`
+### For me: Running while having ghcr.io issues
+1. Build the image: `docker build --tag image_name /location/`
+2. Use regular docker run `docker run --rm --name <container-name <image-name`
+3. Either install packages as root or add RUN commands to Dockerfile
 
 
 ## HTML and CSS
