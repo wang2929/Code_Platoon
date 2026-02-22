@@ -1,6 +1,6 @@
 export default function puzzleSolved(puzzle, lettersList) {
-    for (char of puzzle) {
-        if (lettersList.indexOf(char) == -1) {
+    for (let char of puzzle) {
+        if (!lettersList.includes(char)) {
             return false
         }
     }

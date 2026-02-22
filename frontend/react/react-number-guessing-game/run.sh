@@ -1,5 +1,5 @@
 # Builds the image (only needed once)
-#docker build --quiet -t my-vite-image .
+docker build --quiet -t my-vite-image .
 
 # Make a container (change --name depending on project (or don't, it's cool))
 docker run \
