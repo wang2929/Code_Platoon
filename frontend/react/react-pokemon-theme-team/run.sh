@@ -2,6 +2,8 @@
 docker build --quiet -t my-vite-image .
 
 # Make a container (change --name depending on project (or don't, it's cool))
+# --rm to remove
+# -p 
 docker run \
   --rm \
   -p 5173:5173 \

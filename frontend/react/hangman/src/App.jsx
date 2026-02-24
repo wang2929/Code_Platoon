@@ -53,7 +53,7 @@ function App() {
     } else {
       setLosing(losing + 1)
       if (losing + 2 > 7) {
-        setEndGame(`Answer was \"${puzzle.charAt(0).toUpperCase() + puzzle.slice(1).toLowerCase()}\". You lost stooOooOopid`)
+        setEndGame(`Answer was "${puzzle.charAt(0).toUpperCase() + puzzle.slice(1).toLowerCase()}". You lost stooOooOopid`)
         setGame(false)
       }
     }

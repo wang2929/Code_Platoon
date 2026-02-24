@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -35,6 +37,14 @@
 
 .card {
   padding: 2em;
+  flex: 0 auto;
+  gap: 3;
+}
+
+#container {
+  flex: auto;
+  grid-auto-columns: max-content;
+  justify-content: center;
 }
 
 .read-the-docs {

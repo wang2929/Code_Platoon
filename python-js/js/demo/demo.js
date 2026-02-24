@@ -12,9 +12,10 @@ function vowels() {
 }
 
 const x = ['h','e','l','l',' ','o']
+console.log(`removed ${x.splice(1, 1)}, now have ${x}`);
 const word = "WhAtS uP yO"
 const titleCase = word.toLowerCase().split(' ').reduce((ret, word) => ret + word.charAt(0).toUpperCase() + word.slice(1) + " ", "")
 
-for (let i = 0; i < 10; i++) {
-    console.log(Math.floor(Math.random() * 26))
-}
+// for (let i = 0; i < 10; i++) {
+//     console.log(Math.floor(Math.random() * 5))
+// }
