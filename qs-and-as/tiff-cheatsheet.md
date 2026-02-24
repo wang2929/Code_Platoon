@@ -170,6 +170,39 @@ function exampleFilter(arr) {
 console.log(exampleFilter([1, 3, 5, 7, 9, 11]));
 // Prints [7, 9, 11]
 ```
+
+## React
+My React notes here. Starting with some misc notes.
+- .jsx files are for react components, .js for Javascript utils
+- Create new project using vite: `npm create vite /project/location`
+- Install dependencies: `npm install`
+- Run the app: `npm run dev`
+### For containerization
+- run.sh script builds the image then runs the container
+    - `-p 5173:5173` links machine port 5173 to Docker port 5173
+    - `-v $(pwd):/app & -v /app/node_modules` is mounting the directories to container
+- package.json dev script should `--host` to allow remote connection
+- Dockerfile should `RUN npm install` before `CMD npm run dev`
+    - Dockerfile should also expose the mapped port 5173
+- Maybe I can play around with ports later, but for now, I don't know enough about container networking.
+### Using react-router-dom
+Setup steps:
+1. Create a pages folder for the routing pages .jsx files
+2. Create a router.jsx file 
+    - import pages
+    - import createBrowserRouter() from react-router-dom
+3. Set up createBrowserRouter() in router.jsx. Argument is a route object (list)
+    - Takes a list of routing dictionaries
+    - path: defines the root of the router
+    - element: defines the element that renders on a match (in this case, App page)
+    - children: subpages from the root page
+4. In main.jsx, import the router and `import { RouterProvider } from 'react-router-dom'`
+    - Set up a null element `<RouterProvider router={ router page }/>`
+5. In App.jsx, `import { Outlet } from 'react-router-dom'`and set up the Outlet page
+
+Things like the createBrowserRouter can change to a different type of router.
+
+
 ## PostgreSQL
 - Uninstall the wrong version of PostgreSQL (Ubuntu): `apt-get --purge remove postgresql-{number}`
 - To install PostgreSQL 14:
