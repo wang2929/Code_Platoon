@@ -1,8 +1,7 @@
 FROM node:latest
 WORKDIR /app
 COPY . .
-RUN npm install --legacy-peer-deps && \
-    npm install tailwindcss @tailwindcss/vite
+RUN npm install
 EXPOSE 5173
 CMD ["npm", "run", "dev"]
 

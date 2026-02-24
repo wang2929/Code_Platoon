@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect, useRef } from 'react'
 import GeneratePokemon from './components/GeneratePokemon';
 import MakeCards from './components/MakeCards';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [pokemonId, setPokemonId] = useState(-1)
@@ -51,10 +52,10 @@ function App() {
 
   return (
     <>
-    <GeneratePokemon onClick={getId}/>
     <main id='container'>
-      {
-        makeCards ? (
+      <Outlet/>
+      {/* <GeneratePokemon onClick={getId}/>
+      { { makeCards } ? (
           <div>
             <MakeCards data={pokemonData.current} otherMonsList={ pokeList } />
             <button id="restart" type="text" onClick = { setMakeCards(false) }>Restart</button>
@@ -62,7 +63,7 @@ function App() {
         ) : (
           null
         )
-      }
+      }  */}
     </main>
     </>
   )
