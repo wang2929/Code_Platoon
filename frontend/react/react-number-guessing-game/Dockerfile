@@ -1,6 +1,6 @@
 FROM node:latest
 WORKDIR /app
-COPY . .
+COPY package.json .
 RUN npm install
 EXPOSE 5173
 CMD ["npm", "run", "dev"]
@@ -13,3 +13,4 @@ CMD ["npm", "run", "dev"]
 #   -v /app/node_modules \
 #   --name react-container \
 #   my-vite-image
+# -v mounts current directory to app
