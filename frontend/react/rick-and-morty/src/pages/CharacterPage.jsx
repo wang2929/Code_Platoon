@@ -8,12 +8,12 @@ import PaginationWithEllipsis from '../components/PaginationWithEllipsis'
 export default function CharacterPage() {
     const [charData, setCharData] = useState([])
     const [page, setPage] = useState(1)
-    const [endPage, setEndPage] = useState(1)
+    const [endPage, setEndPage] = useState(-1)
     const [name, setName] = useState("")
     
     useEffect(() => {
         getCharsList()
-    }, []);
+    }, [page, name]);
 
     // Search parameter should be either name or page number
     const getCharsList = async() => {
@@ -22,24 +22,33 @@ export default function CharacterPage() {
             name ? url += `&name=${name}` : null
             let response = await axios.get(url)
             setCharData(response.data.results)
-            setEndPage(response.data.info.pages)
+            setEndPage(parseInt(response.data.info.pages))
         } catch (err) {
             console.error(err)
         }
     }
 
-    const updateActivePage = (page) => {
-        setPage(page)
-        getCharsList()
+    const updateActivePage = (pg) => {
+        setPage(parseInt(pg))
     }
 
-    const rmData = (id) => setCharData(charData.filter((c)=>(c.id !== id)))
+    const updateName = (nm) => {
+        setName(nm)
+        setPage(1)
+    }
+
+    const rmData = (id) => {  setCharData(charData.filter((c)=>(c.id !== id))) }
     
     return (
         <>
-            <UserForm name={name} setName={setName} filterData={getCharsList} />
-            <CardContainer charData={charData} rmData={rmData}/>
-            <PaginationWithEllipsis page={page} endPage={endPage} updatePage={updateActivePage}/>
+            <UserForm setName={updateName} />
+            
+            { endPage != -1 ? 
+                <div>
+                <CardContainer charData={charData} rmData={rmData}/>
+                <PaginationWithEllipsis page={page} endPage={endPage} updatePage={updateActivePage}/>
+                </div> : null
+            }
         </>
     )
 }

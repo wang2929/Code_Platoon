@@ -4,13 +4,12 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Stack from 'react-bootstrap/Stack'
 
-export default function UserForm({ charName, setCharName, filterData }) {
-    const [searchText, setSearchText] = useState("")
+export default function UserForm({ setName }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        filterData(1, charName)
-        setSearchText("")
+        setName(e.target[0].value)
+        e.target[0].value = ""
     }
 
     return (
@@ -20,10 +19,6 @@ export default function UserForm({ charName, setCharName, filterData }) {
                 <Form.Control 
                 className="me-auto" 
                 placeholder="type in a character name:"
-                value={charName}
-                onChange={(e)=> { 
-                    setCharName(e.target.value) 
-                }}
                 />
                 <Button variant="secondary" type="submit">Submit</Button>
             </Stack>
