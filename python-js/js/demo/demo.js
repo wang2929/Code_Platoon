@@ -12,9 +12,11 @@ function vowels() {
 }
 
 const x = ['h','e','l','l',' ','o']
-console.log(`removed ${x.splice(1, 1)}, now have ${x}`);
+//console.log(`removed ${x.splice(1, 1)}, now have ${x}`);
 const word = "WhAtS uP yO"
 const titleCase = word.toLowerCase().split(' ').reduce((ret, word) => ret + word.charAt(0).toUpperCase() + word.slice(1) + " ", "")
+
+console.log(Array.from({length: 10}, (_, i) => i+1).map((x) => `testing ${x}`))
 
 // for (let i = 0; i < 10; i++) {
 //     console.log(Math.floor(Math.random() * 5))
